@@ -1,0 +1,16 @@
+#include"stdio.h"
+#include"string.h"
+#define row 100
+int main()
+{
+    char ch[row],z[3];
+    int j,k=0;
+    printf("请输入数\n");
+    gets(ch);
+    printf("请输入你想要查找的数\n");
+    gets(z);
+    for(j=0;j<strlen(ch)+1;j++)
+      if(z[0]==ch[j]&&z[1]==ch[j+1]||(z[0]-32==ch[j]&&z[1]==ch[j+1]))
+        k++;
+    printf("一共有%d个",k);
+}
