@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{    char ch;
+     int p=0;
+     ch=getchar();
+     while(ch!='\n') 
+     {
+     	if(ch=='i')
+     	{
+     	ch=getchar();	
+	  if(ch=='n')
+     	p+=1;   	
+	     else
+     	ch=getchar();
+             }
+    	else
+     	ch=getchar();
+     	
+     }
+     printf("in有%d个\n",p);
+	}
