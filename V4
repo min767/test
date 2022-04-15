@@ -1,0 +1,68 @@
+#include"stdio.h"
+#include"stdlib.h"
+
+void main()
+{
+	int i=0,j=0,m=0,n=0;
+	char str[30];
+	char ch[30]={'0'};            
+	char op[30]={'0'};          
+	double num[30]={0},sum;   
+	gets(str);
+	double cal(char op[ ],double num[ ],int m,int n);
+	for(i=0;str[i]!='\0';i++)
+	{
+		if(str[i]>='0'&&str[i]<='9'||str[i]=='.')
+		{
+			ch[j++]=str[i];
+		}
+		else
+		{
+			num[n++]=atof(ch);    
+			j=0;
+			op[m++]=str[i];			
+		}
+	}
+	num[n++]=atof(ch);
+	sum=cal(op,num,m,n);
+	printf("%lf",sum);
+	      
+}
+double cal(char op[ ],double num[ ],int m,int n)
+{
+int i,j,k;
+for(i=0;i<=m;i++)                         
+{
+if(op[i]=='*')
+	{
+	      for(j=i;j<m;j++)
+		op[j]=op[j+1];             
+	      num[i]=num[i]*num[i+1];  
+	      for(k=i+1;k<n-1;k++)        
+	      {
+		num[k]=num[k+1];
+	      }		
+	}
+	if(op[i]=='/')
+	{
+	      for(j=i;j<m;j++)
+		op[j]=op[j+1];            		
+	      num[i]=num[i]/num[i+1];     			
+	      for(k=i+1;k<n-2;k++)          
+	      {
+		num[k]=num[k+1];
+	      }
+			
+	}	
+}	
+	double sum=num[0];
+for(i=0;op[i]!='\0';i++)  	
+{
+if(op[i]=='+')
+	sum=sum+num[i+1];
+if(op[i]=='-')
+	sum=sum-num[i+1];
+}
+	return sum;
+
+}
