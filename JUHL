@@ -1,0 +1,100 @@
+#include"stdio.h"
+#include"string.h"
+struct student 
+{
+	int id;
+	char name[100];
+	int sg;
+    	int tg;
+	struct student *next;
+};
+void dy(struct student *curp )
+{
+   printf("学号：%d	 姓名：%s   身高：%d    体重：%d\n",curp->id,curp->name,curp->sg,curp->tg);
+}
+void sc(struct student *p)
+{
+	while(p!=NULL)
+	{
+		dy(p);
+		p=p->next;
+	}
+}
+int main()
+{
+	struct student s1,s2,s3,s4;
+	s1.id=101;
+	strcpy(s1.name,"刘俊");
+	s1.sg=175;
+	s1.tg=70;
+
+	s2.id=102;
+	strcpy(s2.name,"马勤涛");
+	s2.sg=174;
+	s2.tg=65;
+
+	s3.id=103;
+	strcpy(s3.name,"陈春宏");
+	s3.sg=173;
+	s3.tg=60;
+
+	s4.id=104;
+	strcpy(s4.name,"王同学");
+	s4.sg=168;
+	s4.tg=70;
+
+	s1.next=&s2;
+                s2.next=&s3;
+	s3.next=&s4;
+	s4.next=NULL;
+
+	struct student *curp=&s1;
+	while(curp!=NULL)
+	{
+		dy(curp);
+		curp=curp->next;
+	}
+	printf("请输入你想要查询的学号：\n");
+	int id;
+	scanf("%d",&id);
+	curp=&s1;
+	while(curp!=NULL)
+	{
+		if(curp->id==id)
+		{ dy(curp);
+	                   break;
+		}
+		else
+		   curp=curp->next;
+		
+	}
+	printf("请输入你要删除的学号：\n");
+   	scanf("%d",&id);
+	if(id==101)
+	{
+                  s1.next=NULL;
+	  curp=&s2;
+	  sc(curp);
+	}
+	else if(id==102)
+	{
+                  s1.next=&s3;
+	  s2.next=NULL;
+	  curp=&s1;
+     	  sc(curp);
+	}
+	else if(id==103)
+	{
+      	  s2.next=&s4;
+	  s3.next=NULL;
+	  curp=&s1;
+	  sc(curp);
+	}
+	else
+	{
+    	 s4.next=NULL;
+	 curp=&s1;
+	 sc(curp);
+	}
+    return 0;
+}
