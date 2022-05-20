@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<string.h>
+struct Country
+{
+	char name[100];
+	int jp;
+	int yp;
+	int tp;
+	int zs;
+};
+typedef struct Country Country;
+
+void printCountry(Country c)
+{
+	printf("%s\t%d\t%d\t%d\t%d\n",c.name,c.jp,c.yp,c.tp,c.zs);
+}
+void sor(Country a[],int n)
+{
+	int i,j;
+	Country temp;
+	for(i=0;i<n-1;i++)
+	{
+	     for(j=0;j<n-1;j++)
+	   {	
+	         if(a[j].jp<a[1+j].jp)
+	            {	
+	                 temp=a[j];
+	                 a[j]=a[j+1];
+                              a[j+1]=temp;
+		}
+	   }
+	}
+}
+int main()
+{
+	Country c[8];
+	int i;
+	FILE * fp=fopen("D:\\C\\file.txt","r");
+	FILE * outfp=fopen("D:\\C\\sor_file.txt","w");
+	if(fp==NULL)
+	{
+		printf("Error\n");
+		return 0;
+	}
+
+	for(i=0;i<8;i++)
+	{
+		fscanf(fp,"%s %d %d %d %d",c[i].name,&c[i].jp,&c[i].yp,&c[i].tp,&c[i].zs);
+	}
+	fclose(fp);
+	sor(c,8);	
+	for(i=0;i<8;i++) 
+	{
+		printCountry(c[i]);
+	}
+	for(i=0;i<8;i++)
+	fprintf(outfp,"%s\t%d\t%d\t%d\t%d\n",c[i].name,c[i].jp,c[i].yp,c[i].tp,c[i].zs);
+	fclose(outfp);
+	return 0;
+} 
